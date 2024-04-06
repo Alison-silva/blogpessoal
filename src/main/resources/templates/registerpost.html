@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Registrar Post</title>
+    <title>Blog Pessoal</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="style/styleCss.css"/>-->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -12,27 +15,68 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Blog Pessoal</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Menu
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Publicar artigo</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Sair</a>
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-primary" type="submit">Login</button>
-        </form>
-    </div>
-</nav>
 
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Blog Pessoal</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="registerpost">Publicar artigo</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Sair</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-primary" type="submit">Login</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<section>
+    <div class="container"
+         style="width: 70%; padding-bottom: 0px; margin-top: 20px;">
+        <nav aria-label="breadcrumb">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <ol class="breadcrumb"
+                        style="background-color: white; font-size: 20px; padding-left: 0px;">
+                        <li class="breadcrumb-item active" aria-current="page">Registre
+                            seu artigo:</li>
+                    </ol>
+                </div>
+            </div>
+        </nav>
+    </div>
+</section>
+
+
+<section>
+    <div class="container"  style="width: 70%;">
+        <div>
+
+            <form method="post" action="register">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="title" placeholder="Título *">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="author" placeholder="Autor *">
+                </div>
+
+                <textarea id="summernote" type="text" class="form-control" name="textpost" placeholder="Texto *"></textarea>
+
+                <small class="form-text text-muted">(*) Campos obrigatórios</small>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar</button>
+            </form>
+        </div>
+    </div>
+</section>
 
 <script>
     $('#summernote').summernote({
