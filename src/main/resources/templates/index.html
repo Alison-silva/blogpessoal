@@ -2,12 +2,9 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Blog Pessoal</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
@@ -37,7 +34,32 @@
     </nav>
 </header>
 
+<section>
+    <div class="container"  style="width: 60%; padding-bottom: 30px;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
+                <li class="breadcrumb-item active" aria-current="page">Publicações:</li>
+            </ol>
+            <form>
+                <div class="mb-3">
+                    <input class="form-control" id="exampleInputEmail1" placeholder="Pesquisar">
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+        </nav>
 
+        <div class="card shadow-sm bg-white rounded" style="margin-top: 20px;" th:each="post : ${posts}">
+            <div class="card-body">
+                <p class="card-subtitle mb-2 text-muted" style="font-size: 0.8rem;">
+                    <span th:text="${post.author}"></span>
+                    <span th:text="${post.timestamp}"></span>
+                </p>
+                <a ><h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"><span th:text="${post.title}"></span></h4></a>
+                <p class="card-text"><span th:utext="${#strings.abbreviate(post.textpost,400)} "></span></p>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 </body>
