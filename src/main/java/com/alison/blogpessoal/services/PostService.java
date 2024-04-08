@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -30,6 +31,10 @@ public class PostService {
 
     public Page<Post> findListPostPage(String title, Pageable pageable){
         return postRepository.findPostByTitlePage(title, pageable);
+    }
+
+    public Optional<Post> findPostById(Long id) {
+        return postRepository.findById(id);
     }
 
 

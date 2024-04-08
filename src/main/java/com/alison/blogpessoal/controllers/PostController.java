@@ -31,7 +31,7 @@ public class PostController {
         return modelAndView;
     }
 
-    @GetMapping("/postpag")
+    @GetMapping("**/postpag")
     public ModelAndView loadPageNotes(@PageableDefault(size = 5) Pageable pageable, ModelAndView model) {
         Page<Post> pagePost = postService.listPostPage(pageable);
         model.addObject("posts", pagePost);
@@ -53,7 +53,7 @@ public class PostController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "registerpost")
+    @RequestMapping(method = RequestMethod.GET, value = "**/registerpost")
     public ModelAndView registerpost() {
         ModelAndView modelAndView = new ModelAndView("registerpost");
         modelAndView.addObject("postobj", new Post());
@@ -84,6 +84,14 @@ public class PostController {
         postService.save(post);
         modelAndView.addObject("msgok", msgok);
         modelAndView.addObject("postobj", new Post());
+        return modelAndView;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "**/posts/{id}")
+    public ModelAndView getPostDetail(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("detailpost");
+        Post post = postService.findPostById(id).get();
+        modelAndView.addObject("posts", post);
         return modelAndView;
     }
 

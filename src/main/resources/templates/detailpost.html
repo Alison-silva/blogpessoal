@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Pessoal</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Blog Pessoal</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="registerpost">Publicar artigo</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Sair</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-primary" type="submit">Login</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div class="container" style="width: 60%;" th:each="post : ${posts}">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb"
+                style="background-color: white; padding-left: 0px;">
+
+            </ol>
+        </nav>
+        <article>
+            <h1 class="card-title"
+                style="font-weight: bold; margin-bottom: 20px;">
+                <span th:text="${post.title}"></span>
+            </h1>
+            <p class="card-subtitle mb-2 text-muted">
+                Data da publicação: <span
+                    th:text="${#dates.format(post.timestamp, 'dd-MM-yyyy')}"></span>
+                <br>
+            </p>
+            <section>
+                <p class="card-text" style="margin-top: 40px;">
+                    <span th:utext="${post.textpost}"></span>
+                </p>
+            </section>
+        </article>
+
+        <br> <br>
+    </div>
+</main>
+
+</body>
+</html>
