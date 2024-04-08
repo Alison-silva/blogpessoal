@@ -10,9 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -40,6 +38,20 @@ public class PostController {
         model.setViewName("index");
         return model;
     }
+
+    @PostMapping("**/findpost")
+    public ModelAndView findpost(@RequestParam("titlesearch") String titlesearch,
+                                 @PageableDefault(size = 5, sort = {"title"}) Pageable pageable) {
+
+        Page<Post> posts = null;
+        posts = postService.findListPostPage(titlesearch, pageable);
+
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("posts", posts);
+        modelAndView.addObject("titlesearch", titlesearch);
+        return modelAndView;
+    }
+
 
     @RequestMapping(method = RequestMethod.GET, value = "registerpost")
     public ModelAndView registerpost() {

@@ -40,9 +40,9 @@
             <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
                 <li class="breadcrumb-item active" aria-current="page">Publicações:</li>
             </ol>
-            <form>
+            <form action="findpost" method="post" class="col s12" id="findpost">
                 <div class="mb-3">
-                    <input class="form-control" id="exampleInputEmail1" placeholder="Pesquisar">
+                    <input class="form-control" name="titlesearch" id="titlesearch" placeholder="Pesquisar" th:value="${titlesearch}">
                 </div>
                 <button type="submit" class="btn btn-primary">Buscar</button>
             </form>
@@ -67,16 +67,16 @@
                 th:if="${posts != null}">
                 <li class="page-item" th:if="${posts.hasPrevious()}"><a
                         class="page-link"
-                        th:href="@{/postpag(page=${posts.number-1}, size=${posts.size})}">Anterior</a>
+                        th:href="@{/postpag(page=${posts.number-1}, size=${posts.size}, titlesearch=${titlesearch})}">Anterior</a>
                 </li>
                 <li class="page-item"
                     th:each="i: ${#numbers.sequence(0, posts.totalPages - 1)}"><a
                         class="page-link"
-                        th:href="@{/postpag(page=${i}, size=${posts.size})}">[[ ${i}
+                        th:href="@{/postpag(page=${i}, size=${posts.size}, titlesearch=${titlesearch})}">[[ ${i}
                     + 1 ]]</a></li>
                 <li class="page-item" th:if="${posts.hasNext()}"><a
                         class="page-link"
-                        th:href="@{/postpag(page=${posts.number+1}, size=${posts.size})}">Próximo</a>
+                        th:href="@{/postpag(page=${posts.number+1}, size=${posts.size}, titlesearch=${titlesearch})}">Próximo</a>
                 </li>
             </ul>
         </nav>

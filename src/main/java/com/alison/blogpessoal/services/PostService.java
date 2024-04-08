@@ -28,7 +28,9 @@ public class PostService {
         return postRepository.findPost(pageable);
     }
 
-
+    public Page<Post> findListPostPage(String title, Pageable pageable){
+        return postRepository.findPostByTitlePage(title, pageable);
+    }
 
 
 }
