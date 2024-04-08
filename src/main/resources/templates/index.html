@@ -59,6 +59,31 @@
             </div>
         </div>
     </div>
+
+    <br /> <br />
+    <center>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center"
+                th:if="${posts != null}">
+                <li class="page-item" th:if="${posts.hasPrevious()}"><a
+                        class="page-link"
+                        th:href="@{/postpag(page=${posts.number-1}, size=${posts.size})}">Anterior</a>
+                </li>
+                <li class="page-item"
+                    th:each="i: ${#numbers.sequence(0, posts.totalPages - 1)}"><a
+                        class="page-link"
+                        th:href="@{/postpag(page=${i}, size=${posts.size})}">[[ ${i}
+                    + 1 ]]</a></li>
+                <li class="page-item" th:if="${posts.hasNext()}"><a
+                        class="page-link"
+                        th:href="@{/postpag(page=${posts.number+1}, size=${posts.size})}">Próximo</a>
+                </li>
+            </ul>
+        </nav>
+    </center>
+    <br /> <br />
+
+
 </section>
 
 

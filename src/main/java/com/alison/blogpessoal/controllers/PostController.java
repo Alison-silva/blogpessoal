@@ -3,9 +3,14 @@ package com.alison.blogpessoal.controllers;
 import com.alison.blogpessoal.model.Post;
 import com.alison.blogpessoal.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,8 +29,16 @@ public class PostController {
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("posts", postService.list());
+        modelAndView.addObject("posts", postService.list(PageRequest.of(0, 5)));
         return modelAndView;
+    }
+
+    @GetMapping("/postpag")
+    public ModelAndView loadPageNotes(@PageableDefault(size = 5) Pageable pageable, ModelAndView model) {
+        Page<Post> pagePost = postService.listPostPage(pageable);
+        model.addObject("posts", pagePost);
+        model.setViewName("index");
+        return model;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "registerpost")
