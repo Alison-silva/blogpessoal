@@ -9,9 +9,9 @@
 O projeto consiste em um blog pessoal onde os usuários podem visualizar postagens, 
 ler artigos e também fazer login para publicar seus próprios artigos. 
 O framework utilizado foi Spring Boot para criar a aplicação web e o mecanismo de 
-template Thymeleaf para renderizar as páginas HTML. Para o login foi utilizado o
-spring security em memória. A edição de artigos é feita em um campo utilizando o
-summernote, um editor simples para bootstrap.
+template Thymeleaf para renderizar as páginas HTML. O sistema possui paginação e 
+pesquisa de artigos por título. Para o login foi utilizado o spring security em memória.
+A edição de artigos é feita em um campo utilizando o summernote, um editor simples para bootstrap.
 
 ## Tecnologias utilizadas
 
@@ -61,12 +61,13 @@ spring.datasource.username= <coloque seu username>
 spring.datasource.password= <coloque sua senha>
 ```
 
-## Funcionalidades (CRUD)
+## Funcionalidades
 
 **Visualização de Postagens e Artigos:**
 
 - Os usuários podem navegar pelo blog e visualizar todas as postagens existentes.
 - Cada postagem exibirá o título, conteúdo, data de publicação e o autor.
+- O blog possui paginação, de cinco artigos por tela, e possui uma barra de pesquisa, onde poderá buscar o artigo específico por título.
 - Os artigos completos estarão disponíveis para leitura.
 
 **Login de Usuário:**
