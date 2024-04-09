@@ -45,7 +45,7 @@ public class PostController {
     public ModelAndView findpost(@RequestParam("titlesearch") String titlesearch,
                                  @PageableDefault(size = 5, sort = {"title"}) Pageable pageable) {
 
-        Page<Post> posts = null;
+        Page<Post> posts;
         posts = postService.findListPostPage(titlesearch, pageable);
 
         ModelAndView modelAndView = new ModelAndView("index");
