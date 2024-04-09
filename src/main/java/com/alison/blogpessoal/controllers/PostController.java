@@ -32,9 +32,11 @@ public class PostController {
     }
 
     @GetMapping("**/postpag")
-    public ModelAndView loadPageNotes(@PageableDefault(size = 5) Pageable pageable, ModelAndView model) {
-        Page<Post> pagePost = postService.listPostPage(pageable);
+    public ModelAndView loadPageNotes(@PageableDefault(size = 5) Pageable pageable, ModelAndView model,
+                                      @RequestParam("titlesearch") String titlesearch) {
+        Page<Post> pagePost = postService.findListPostPage(titlesearch, pageable);
         model.addObject("posts", pagePost);
+        model.addObject("titlesearch", titlesearch);
         model.setViewName("index");
         return model;
     }
