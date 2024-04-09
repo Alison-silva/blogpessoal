@@ -18,13 +18,10 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> findPostPage(Pageable pageable);
 
     default Page<Post> findPostByTitlePage(String title, Pageable pageable) {
-
         if (title == null || title.trim().isEmpty()) {
-
             return findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
                     Sort.by("timestamp").descending()));
         } else {
-
             Post post = new Post();
             post.setTitle(title);
 
